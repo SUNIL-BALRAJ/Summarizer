@@ -1,0 +1,281 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
+                <div class="page-header">
+                    <div class="page-block">
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ breadcrumb ] end -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- [ Main Content ] start -->
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Recent Summary</h5>
+                                    </div>
+                                    <div class="card-body"><!DOCTYPE html>
+                                      <!DOCTYPE html>
+                                      <html>
+                                        <head>
+
+                                          <h3>Store the summary</h3>
+                                          <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+                                          <script src="./contractAbi.js"></script>
+                                        </head>
+                                        <body>
+                                          <button id="connectWalletBtn" class="btn btn-primary" onclick="connectWallet()">Connect Wallet</button>
+                                          <span id="walletAddress"></span>
+                                          <br /><br />
+                                          <h3>Upload Hash of the summary</h3>
+                                          <input type="text" class="form-control" id="personIdInput" placeholder="Person ID" />
+                                          <br /><br />
+                                          <input type="text" class="form-control" id="nameInput" placeholder="Name" />
+                                          <br /><br />
+                                          <input type="text" class="form-control" id="stringInput" placeholder="String" />
+                                          <br /><br />
+                                          <input type="text" class="form-control" id="retrieverAddressInput" placeholder="Retriever Address" />
+                                          <br />
+                                          <button class="btn btn-dark" onclick="uploadString()">Upload String</button>
+                                          <br /><br />
+                                        </div>
+                                        </div>
+                                        </div>
+
+                                          <div class="col-sm-12">
+                                            <div class="card">
+                                              <div class="card-header">
+                                                <h5>Recent Summary</h5>
+                                              </div>
+                                              <div class="card-body">
+                                                <h3>File Retrieval</h3>
+                                                <input type="text" class="form-control" id="retrievePersonIdInput" placeholder="Person ID" />
+                                                <br />
+                                                <button class="btn btn-dark" onclick="retrieveString()">Retrieve String</button>
+                                                <br /><br />
+                                                <button class="btn-dark" onclick="getUploadedPersonList()">Get Uploaded Person List</button>
+                                                <br /><br />
+                                                <div id="retrieveOutput"></div>
+                                                <br />
+                                                <h5>Uploaded Persons:</h5>
+                                                <table class="awesome-table">
+                                                  <thead>
+                                                      <tr>
+                                                          <th>Person ID</th>
+                                                          <th>Name</th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody id="uploadedPersonsTable">
+                                                      <!-- The table body will be populated dynamically by JavaScript -->
+                                                  </tbody>
+                                              </table>
+                                              </div>
+                                            </div>
+                                          </div>
+                                      <style>
+    /* Awesome table styles */
+    .awesome-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .awesome-table th, .awesome-table td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    .awesome-table th {
+        background-color: #f2f2f2;
+    }
+    .bold-retrieved-string {
+        font-weight: bold;
+    }
+</style>
+                                          <script>
+                                            // Set the correct contract address and ABI
+                                            const contractAddress = '0xf8C4b23C4B4d3Abc82a43e944563d2A8211fef79';
+                                            const contractAbi = [
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "personId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "str1",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "retriever",
+				"type": "address"
+			}
+		],
+		"name": "storeStrings",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getUploadedPersonList",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "personId",
+				"type": "uint256"
+			}
+		],
+		"name": "retrieveStrings",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]; // Replace this with the actual contract ABI
+                                      
+                                            const web3 = new Web3(window.ethereum);
+                                            let currentAccount;
+                                            let contractInstance;
+                                      
+                                            async function connectWallet() {
+                                              if (window.ethereum) {
+                                                try {
+                                                  await window.ethereum.request({ method: 'eth_requestAccounts' });
+                                                  const accounts = await web3.eth.getAccounts();
+                                                  currentAccount = accounts[0];
+                                      
+                                                  console.log('Connected to wallet successfully!');
+                                                  console.log('Current Account:', currentAccount);
+                                      
+                                                  const walletAddressElement = document.getElementById('walletAddress');
+                                                  walletAddressElement.textContent = `Connected Wallet Address: ${currentAccount}`;
+                                      
+                                                  contractInstance = new web3.eth.Contract(contractAbi, contractAddress);
+                                                } catch (error) {
+                                                  console.error('Error connecting to wallet:', error);
+                                                }
+                                              } else {
+                                                console.error('No wallet detected.');
+                                              }
+                                            }
+                                      
+                                            async function uploadString() {
+                                              const personId = document.getElementById('personIdInput').value;
+                                              const name = document.getElementById('nameInput').value;
+                                              const string = document.getElementById('stringInput').value;
+                                              const retrieverAddressInput = document.getElementById('retrieverAddressInput').value;
+                                      
+                                              try {
+                                                await contractInstance.methods.storeStrings(personId, name, string, retrieverAddressInput).send({ from: currentAccount });
+                                                console.log('String uploaded successfully.');
+                                              } catch (error) {
+                                                console.error('Error storing string:', error);
+                                              }
+                                            }
+                                      
+                                            
+    async function retrieveString() {
+        try {
+            const personId = document.getElementById('retrievePersonIdInput').value;
+
+            const result = await contractInstance.methods.retrieveStrings(personId).call({ from: currentAccount });
+            console.log('String:', result);
+
+            const retrieveOutput = document.getElementById('retrieveOutput');
+            retrieveOutput.textContent = `Hash Of the Patient File: ${result}`;
+            retrieveOutput.classList.add('bold-retrieved-string');
+        } catch (error) {
+            const retrieveOutput = document.getElementById('retrieveOutput');
+            retrieveOutput.textContent = 'Access Denied';
+            console.error('Error retrieving string:', error);
+        }
+    }
+                                      
+                                            async function getUploadedPersonList() {
+        try {
+            const result = await contractInstance.methods.getUploadedPersonList().call({ from: currentAccount });
+            console.log('Uploaded Person List:', result);
+
+            const uploadedPersonsTable = document.getElementById('uploadedPersonsTable');
+            uploadedPersonsTable.innerHTML = '';
+
+            result[0].forEach((personId, index) => {
+                const name = result[1][index];
+                const row = document.createElement('tr');
+                const personIdCell = document.createElement('td');
+                const nameCell = document.createElement('td');
+
+                personIdCell.textContent = personId;
+                nameCell.textContent = name;
+
+                row.appendChild(personIdCell);
+                row.appendChild(nameCell);
+                uploadedPersonsTable.appendChild(row);
+            });
+        } catch (error) {
+            console.error('Error getting uploaded person list:', error);
+        }
+    }
+                                          </script>
+                                        </body>
+                                      </html>
+                                      
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+

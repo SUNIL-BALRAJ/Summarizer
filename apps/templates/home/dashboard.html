@@ -1,0 +1,90 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+     
+                <div class="main-body">
+                    <div class="page-wrapper"><html>
+<head>
+    <title>Energy Generated</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h5></h5>
+        </div>
+        <div class="card-block">
+            <div id="chart-highchart-line1" style="width: 100%; height: 350px;"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                Highcharts.chart('chart-highchart-line1', {
+                    chart: {
+                        type: 'spline',
+                    },
+                    colors: ['#1de9b6', '#1dc4e9', '#A389D4'],
+                    title: {
+                        text: 'Energy Generated'
+                    },
+                   
+                    yAxis: {
+                        title: {
+                            text: 'Power(watts)'
+                        }
+                    },
+                    plotOptions: {
+                        series: {
+                            label: {
+                                connectorAllowed: false
+                            },
+                            pointStart: 2010
+                        }
+                    },
+                    series: [{
+                        name: 'Week 1',
+                        data: [1000,1440,1740,1230,2020,2040,2300]
+                    }, {
+                        name: 'Week 2',
+                        data: [1500, 1730, 1050, 1450, 1305, 2225, 1015, 1835]
+                    }, {
+                        name: 'Week 3',
+                        data: [900, 750, 725, 850, 1115, 1155, 1035, 1025]
+                    }],
+                    responsive: {
+                        rules: [{
+                            condition: {
+                                maxWidth: 400
+                            },
+                            chartOptions: {
+                                legend: {
+                                    layout: 'horizontal',
+                                    align: 'center',
+                                    verticalAlign: 'bottom'
+                                }
+                            }
+                        }]
+                    }
+                });
+            }, 700);
+        });
+    </script>
+</body>
+</html>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

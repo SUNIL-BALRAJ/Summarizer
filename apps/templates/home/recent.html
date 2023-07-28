@@ -1,0 +1,102 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page Blank {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<style>
+  /* Style the slider container */
+  .slider-container {
+      width: 300px;
+      margin: 20px auto;
+  }
+
+  /* Style the slider */
+  input[type="range"] {
+      width: 100%;
+  }
+
+  /* Style the slider labels */
+  .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+  }
+</style>
+{% endblock stylesheets %}
+{% block content %}
+<section class="pcoded-main-container">
+  <div class="pcoded-wrapper">
+    <div class="pcoded-content">
+      <div class="pcoded-inner-content">
+        <div class="main-body">
+          <div class="page-wrapper">
+            <div class="row">
+              
+              
+             
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header">
+                           <h5>Get Audio Here</h5>
+                      </div>
+                      <div class="card-block">
+                          <div class="row"> 
+                            <form action="{% url 'cloud'  %}" method='POST' enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="number" class="form-control" placeholder="Name" name="p_id">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header">
+                         <h5>Summary</h5>
+                       
+                      </div>
+                      <div class="card-block">
+                          <div class="row">
+                            <table border="1">
+                              <tr>
+                                  <th>Date</th>
+                                  <th>Summary</th>
+                                  <th>Audio File</th>
+                              </tr>
+                              {% for i in data %}
+                              <tr>
+                                  <td>{{ i.0 }}</td>
+                                  <td>{{ i.1 }}</td>
+                                  <td><audio  controls>
+                                    <source src="static/{{i.2}}" ></source>
+                                  </audio></td>
+                              </tr>
+                              {% endfor %}
+                          </table>
+                            
+
+                            
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}

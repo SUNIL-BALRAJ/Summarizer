@@ -1,0 +1,1262 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block content %}
+
+
+
+
+
+
+<!-- [ Main Content ] start -->
+
+<div class="pcoded-main-container">
+  <div class="pcoded-wrapper">
+
+      <div class="pcoded-content">
+          <div class="pcoded-inner-content">
+    
+              <div class="main-body">
+                  <div class="page-wrapper">
+<div class="row">
+  <!--[ daily sales section ] start-->
+  <div class="col-md-6 col-xl-4">
+    <div class="card daily-sales">
+      <div class="card-block">
+        <h6 class="mb-4">Total Token</h6>
+        <div class="row d-flex align-items-center">
+          <div class="col-9">
+            <h3 class="f-w-300 d-flex align-items-center m-b-0"><i
+                class="feather icon-aperture text-c-green f-30 m-r-10"></i>
+              107440</h3>
+          </div>
+
+          <div class="col-3 text-right">
+            <p class="m-b-0">67%</p>
+          </div>
+        </div>
+        <div class="progress m-t-30" style="height: 7px;">
+          <div class="progress-bar progress-c-theme" role="progressbar" style="width: 50%;"
+            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
+  
+ 
+  
+  
+
+  {% comment %} sppedometer2 {% endcomment %}
+
+<html>
+ 
+
+<div class="gauge-wrapper">
+  <div class="gauge four rischio3">
+    <div class="slice-colors">
+      <div class="st slice-item"></div>
+      <div class="st slice-item"></div>
+      <div class="st slice-item"></div>
+      <div class="st slice-item"></div>
+    </div>
+    <div class="needle"></div>
+    <div class="gauge-center">
+      <div class="label">POWER</div>
+      <div class="number">HIGH</div>
+    </div>    
+  </div>
+</div>
+
+
+
+</html>
+
+<style>
+  body {height: 150vh; font-family: Arial; text-align:center; font-family: Arial, Helvetica, sans-serif;}
+h1 {text-align:center;}
+
+.gauge-wrapper {
+  display: inline-block;
+  width: auto;
+  margin: 0 auto;
+  padding: 70px 15px 15px;
+}
+
+.gauge {
+  background: #e7e7e7;
+  box-shadow: 0 -3px 6px 2px rgba(0, 0, 0, 0.50);
+  width: 200px;
+  height: 100px;
+  border-radius: 100px 100px 0 0!important;
+  position: relative;
+  overflow: hidden;
+}
+.gauge.min-scaled {
+  transform: scale(0.5);
+}
+
+.gauge-center {
+  content: '';
+  color: #fff;
+  width: 60%;
+  height: 60%;
+  background: #15222E;
+  border-radius: 100px 100px 0 0!important;
+  position: absolute;
+  box-shadow: 0 -13px 15px -10px rgba(0, 0, 0, 0.28);
+  right: 21%;
+  bottom: 0;
+  color: #fff;
+  z-index:10;
+}
+
+.gauge-center .label, .gauge-center .number {display:block; width: 100%; text-align: center; border:0!important;}
+.gauge-center .label {font-size:0.75em; opacity:0.6; margin:1.1em 0 0.3em 0;}
+.gauge-center .number {font-size:1.2em;}
+
+.needle {
+  width: 80px;
+  height: 7px;
+  background: #15222E;
+  border-bottom-left-radius: 100%!important;
+  border-bottom-right-radius: 5px!important;
+  border-top-left-radius: 100%!important;
+  border-top-right-radius: 5px!important;
+  position: absolute;
+  bottom: -2px;
+  left: 20px;
+  transform-origin: 100% 4px;
+  transform: rotate(0deg);
+  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.38);
+  display:none;
+  z-index:9;
+}
+
+.four.rischio1 .needle {animation: fourspeed1 2s 1 both; animation-delay: 1s; display:block;}
+.four.rischio2 .needle {animation: fourspeed2 2s 1 both; animation-delay: 1s; display:block;}
+.four.rischio3 .needle {animation: fourspeed3 2s 1 both; animation-delay: 1s; display:block;}
+.four.rischio4 .needle {animation: fourspeed4 2s 1 both; animation-delay: 1s; display:block;}
+
+.slice-colors {height:100%;}
+
+.slice-colors .st {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;  
+}
+
+
+.four .slice-colors .st.slice-item:nth-child(2) {
+  border-top: 50px #f1c40f solid;
+  border-right: 50px #f1c40f solid;
+  background-color:#1eaa59;
+}
+
+.four .slice-colors .st.slice-item:nth-child(4) {
+  left:50%;
+  border-bottom: 50px #E84C3D solid;
+  border-right: 50px #E84C3D solid;
+  background-color:#e67e22;
+}
+
+
+@-webkit-keyframes fourspeed1 {
+	0% {transform: rotate(0);}
+  100% {transform: rotate(16deg);}
+}
+
+@-webkit-keyframes fourspeed2 {
+	0% {transform: rotate(0);}
+  100% {transform: rotate(65deg);}
+}
+
+@-webkit-keyframes fourspeed3 {
+	0% {transform: rotate(0);}
+  100% {transform: rotate(115deg);}
+}
+
+@-webkit-keyframes fourspeed4 {
+	0% {transform: rotate(0);}
+  100% {transform: rotate(164deg);}
+}
+</style>
+
+  <!-- [ statistics year chart ] start -->
+  {% comment %} 
+  <div class="col-xl-4 col-md-6">
+    <div class="card card-event">
+      <div class="card-block">
+        <div class="row align-items-center justify-content-center">
+          <div class="col">
+            <h5 class="m-0">Upcoming Event</h5>
+          </div>
+          <div class="col-auto">
+            <label class="label theme-bg2 text-white f-14 f-w-400 float-right">14%</label>
+          </div>
+        </div>
+        <h2 class="mt-3 f-w-300">45<sub class="text-muted f-14">Participants</sub></h2>
+        <h6 class="text-muted mt-4 mb-0">You can participate in event </h6>
+        <i class="fab fa-angellist text-c-purple f-50"></i>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-block border-bottom">
+        <div class="row d-flex align-items-center">
+          <div class="col-auto">
+            <i class="feather icon-zap f-30 text-c-green"></i>
+          </div>
+          <div class="col">
+            <h3 class="f-w-300">3 - 4</h3>
+            <span class="d-block text-uppercase">TOTAL EVENTS</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-block">
+        <div class="row d-flex align-items-center">
+          <div class="col-auto">
+            <i class="feather icon-map-pin f-30 text-c-blue"></i>
+          </div>
+          <div class="col">
+            <h3 class="f-w-300">7</h3>
+            <span class="d-block text-uppercase">TOTAL AREAS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- [ statistics year chart ] end -->
+  <!--[social-media section] start-->
+  <div class="col-md-12 col-xl-4">
+    <div class="card card-social">
+      <div class="card-block border-bottom">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-auto">
+            <i class="fab fa-facebook-f text-primary f-36"></i>
+          </div>
+          <div class="col text-right">
+            <h3>12,281</h3>
+            <h5 class="text-c-green mb-0">+7.2% <span class="text-muted">Total Likes</span></h5>
+          </div>
+        </div>
+      </div>
+      <div class="card-block">
+        <div class="row align-items-center justify-content-center card-active">
+          <div class="col-6">
+            <h6 class="text-center m-b-10"><span class="text-muted m-r-5">Followers:</span>35,098</h6>
+            <div class="progress">
+              <div class="progress-bar progress-c-theme" role="progressbar" style="width:60%;height:6px;"
+                aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <h6 class="text-center  m-b-10"><span class="text-muted m-r-5">Duration:</span>3,539</h6>
+            <div class="progress">
+              <div class="progress-bar progress-c-theme2" role="progressbar" style="width:45%;height:6px;"
+                aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xl-4">
+    <div class="card card-social">
+      <div class="card-block border-bottom">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-auto">
+            <i class="fab fa-google-plus-g text-c-red f-36"></i>
+          </div>
+          <div class="col text-right">
+            <h3>11,200</h3>
+            <h5 class="text-c-purple mb-0">+6.2% <span class="text-muted">Total Likes</span>
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="card-block">
+        <div class="row align-items-center justify-content-center card-active">
+          <div class="col-6">
+            <h6 class="text-center m-b-10"><span class="text-muted m-r-5">Active Users:</span>34,185</h6>
+            <div class="progress">
+              <div class="progress-bar progress-c-green" role="progressbar" style="width:40%;height:6px;"
+                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <h6 class="text-center  m-b-10"><span class="text-muted m-r-5">Duration:</span>4,567</h6>
+            <div class="progress">
+              <div class="progress-bar progress-c-blue" role="progressbar" style="width:70%;height:6px;"
+                aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xl-4">
+    <div class="card card-social">
+      <div class="card-block border-bottom">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-auto">
+            <i class="fab fa-twitter text-c-blue f-36"></i>
+           
+          </div>
+          <div class="col text-right">
+            <h3>10,500</h3>
+            <h5 class="text-c-blue mb-0">+5.9% <span class="text-muted">Total Likes</span></h5>
+          </div>
+        </div>
+      </div>
+      <div class="card-block">
+        <div class="row align-items-center justify-content-center card-active">
+          <div class="col-6">
+            <h6 class="text-center m-b-10"><span class="text-muted m-r-5">#Tweets:</span>25,998</h6>
+            <div class="progress">
+              <div class="progress-bar progress-c-theme" role="progressbar" style="width:80%;height:6px;"
+                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <h6 class="text-center  m-b-10"><span class="text-muted m-r-5">Duration:</span>7,753</h6>
+            <div class="progress">
+              <div class="progress-bar progress-c-theme2" role="progressbar" style="width:50%;height:6px;"
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> {% endcomment %}
+  
+ 
+    
+<div >
+  <div class="card-header">
+    <style>
+      .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+    }
+</style>
+      <!-- <h5>Electricity Generated (kWH)</h5>
+  </div>
+  <div class="card-block text-center">
+      <div id="chart-DynamicLineBar" style="width: 500%; height: 350px;"></div>
+  </div>
+</div> -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.2/echarts.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+      setTimeout(function() {
+          var domdynamic = document.getElementById("chart-DynamicLineBar");
+          var myChartdynamic = echarts.init(domdynamic);
+          var app = {};
+          var optiondyn = null;
+          optiondyn = {
+              title: {
+                  text: '',
+                  subtext: ''
+              },
+              tooltip: {
+                  trigger: 'axis',
+                  axisPointer: {
+                      type: 'cross',
+                      label: {
+                          backgroundColor: '#283b56'
+                      }
+                  }
+              },
+              legend: {
+                  data: ['Produced', 'Consumed']
+              },
+              color: ['#A389D4', '#1de9b6'],
+              toolbox: {
+                  show: true,
+                  feature: {
+                      dataView: {
+                          readOnly: false
+                      },
+                      restore: {},
+                      saveAsImage: {}
+                  }
+              },
+              dataZoom: {
+                  show: false,
+                  start: 0,
+                  end: 100
+              },
+              xAxis: [{
+                  type: 'category',
+                  boundaryGap: true,
+                  data: (function() {
+                      var now = new Date();
+                      var res = [];
+                      var len = 10;
+                      while (len--) {
+                          res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
+                          now = new Date(now - 2000);
+                      }
+                      return res;
+                  })()
+              }, {
+                  type: 'category',
+                  boundaryGap: true,
+                  data: (function() {
+                      var res = [];
+                      var len = 10;
+                      while (len--) {
+                          res.push(10 - len - 1);
+                      }
+                      return res;
+                  })()
+              }],
+              yAxis: [{
+                  type: 'value',
+                  scale: true,
+                  name: 'Start',
+                  max: 130,
+                  min: 0,
+                  boundaryGap: [0.2, 0.2]
+              }, {
+                  type: 'value',
+                  scale: true,
+                  name: 'Max',
+                  max: 1200,
+                  min: 0,
+                  boundaryGap: [0.2, 0.2]
+              }],
+              series: [{
+                  name: 'Consumed',
+                  type: 'bar',
+                  itemStyle: {
+                      barBorderRadius: [15, 15, 0, 0],
+                  },
+                  xAxisIndex: 1,
+                  yAxisIndex: 1,
+                  data: (function() {
+                      var res = [];
+                      var len = 10;
+                      while (len--) {
+                          res.push(Math.round(Math.random() * 10));
+                      }
+                      return res;
+                  })()
+              }, {
+                  name: 'Produced',
+                  type: 'line',
+                  smooth: true,
+                  data: (function() {
+                      var res = [];
+                      var len = 0;
+                      while (len < 10) {
+                          res.push((Math.random() * 90+ 5).toFixed(1) - 0);
+                          len++;
+                      }
+                      return res;
+                  })()
+              }]
+          };
+          app.count = 11;
+          setInterval(function() {
+              axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+
+              var data0 = optiondyn.series[0].data;
+              var data1 = optiondyn.series[1].data;
+              data0.shift();
+              data0.push(Math.round(Math.random() * 1000));
+              data1.shift();
+              data1.push((Math.random() * 10 + 5).toFixed(1) - 0);
+
+              optiondyn.xAxis[0].data.shift();
+              optiondyn.xAxis[0].data.push(axisData);
+              optiondyn.xAxis[1].data.shift();
+              optiondyn.xAxis[1].data.push(app.count++);
+
+              myChartdynamic.setOption(optiondyn);
+          }, 2100);
+          if (optiondyn && typeof optiondyn === "object") {
+              myChartdynamic.setOption(optiondyn, true);
+          }
+      }, 700);
+  });
+</script>
+
+
+
+{% comment %} future {% endcomment %}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Area Chart</title>
+    <!-- Include ECharts library -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts.min.js"></script>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h5>Energy Consumption</h5>
+            
+        </div>
+        <div class="card-block text-center">
+            <div id="chart-echart-line-area" style="width: 600%; height: 300px;"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(function() {
+                var dom = document.getElementById("chart-echart-line-area");
+                var myChart = echarts.init(dom);
+                var app = {};
+                var option = null;
+                option = {
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['week 1', 'week 2', 'week 3']
+                    },
+                    toolbox: {
+                        show: false,
+                        feature: {
+                            mark: {
+                                show: true
+                            },
+                            dataView: {
+                                show: true,
+                                readOnly: false
+                            },
+                            magicType: {
+                                show: true,
+                                type: ['line', 'bar', 'stack', 'tiled']
+                            },
+                            restore: {
+                                show: true
+                            },
+                            saveAsImage: {
+                                show: true
+                            }
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [{
+                        type: 'category',
+                        splitLine: {
+                            show: false
+                        },
+                        boundaryGap: false,
+                        data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                    }],
+                    color: ["rgba(163, 137, 212, 0.5)", "rgba(4, 169, 246, 0.5)", "rgba(28, 233, 181, 0.5)"],
+                    yAxis: [{
+                        type: 'value',
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    series: [{
+                        name: 'week 1',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [10, 12, 21, 54, 260, 830, 900]
+                    }, {
+                        name: 'week 2',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [30, 182, 434, 791, 390, 30, 10]
+                    }, {
+                        name: 'week 3',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [1320, 1132, 601, 234, 120, 90, 20]
+                    }]
+                };
+                myChart.setOption(option, true);
+            }, 700);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+{% comment %} sppedometer {% endcomment %}
+
+{% comment %} <html>
+  <canvas id="canvas" height="175" width="350" class="m-auto">
+
+  </canvas>
+  <p class="text">0 %</p>
+</html>
+
+<style>
+  body {
+    background: black;
+  }
+  canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .text {
+    color: white;
+    font-weight: 600;
+    font-size: 24px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+
+<script>
+  //Change this Value to set the percentage
+let totalRot = ((90 / 100) * 180 * Math.PI) / 180;
+
+let rotation = 0;
+let doAnim = true;
+let canvas = null;
+let ctx = null;
+let text = document.querySelector(".text");
+canvas = document.getElementById("canvas");
+ctx = canvas.getContext("2d");
+setTimeout(requestAnimationFrame(animate), 1500);
+
+function calcPointsCirc(cx, cy, rad, dashLength) {
+  var n = rad / dashLength,
+    alpha = (Math.PI * 2) / n,
+    pointObj = {},
+    points = [],
+    i = -1;
+
+  while (i < n) {
+    var theta = alpha * i,
+      theta2 = alpha * (i + 1);
+
+    points.push({
+      x: Math.cos(theta) * rad + cx,
+      y: Math.sin(theta) * rad + cy,
+      ex: Math.cos(theta2) * rad + cx,
+      ey: Math.sin(theta2) * rad + cy
+    });
+    i += 2;
+  }
+  return points;
+}
+function animate() {
+  //Clearing animation on every iteration
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const center = {
+    x: 175,
+    y: 175
+  };
+
+  //main arc
+  ctx.beginPath();
+  ctx.strokeStyle = rotation >= 0.75 * Math.PI ? "#FF9421" : "#35FFFF";
+  ctx.lineWidth = "3";
+  let radius = 174;
+  ctx.arc(center.x, center.y, radius, Math.PI, Math.PI + rotation);
+  ctx.stroke();
+
+  //Red Arc
+  if (rotation <= 0.75 * Math.PI) {
+    ctx.beginPath();
+    ctx.strokeStyle = "#FF9421";
+    ctx.lineWidth = "3";
+    ctx.arc(center.x, center.y, radius, 1.75 * Math.PI, 0);
+    ctx.stroke();
+  }
+
+  //functions to draw dotted lines
+  const DrawDottedLine = (x1, y1, x2, y2, dotRadius, dotCount, dotColor) => {
+    var dx = x2 - x1;
+    var dy = y2 - y1;
+    let slopeOfLine = dy / dx;
+    var degOfLine =
+      Math.atan(slopeOfLine) * (180 / Math.PI) > 0
+        ? Math.atan(slopeOfLine) * (180 / Math.PI)
+        : 180 + Math.atan(slopeOfLine) * (180 / Math.PI);
+    var degOfNeedle = rotation * (180 / Math.PI);
+
+    if (rotation >= 0.75 * Math.PI) {
+      dotColor = degOfLine <= degOfNeedle ? "#FF9421" : "#f97272";
+    } else {
+      dotColor = degOfLine <= degOfNeedle ? dotColor : "#aad4d4";
+    }
+    var spaceX = dx / (dotCount - 1);
+    var spaceY = dy / (dotCount - 1);
+    var newX = x1;
+    var newY = y1;
+    for (var i = 0; i < dotCount; i++) {
+      dotRadius = dotRadius >= 0.75 ? dotRadius - i * (0.5 / 15) : dotRadius;
+      drawDot(newX, newY, dotRadius, `${dotColor}${100 - (i + 1)}`);
+      newX += spaceX;
+      newY += spaceY;
+    }
+  };
+  const drawDot = (x, y, dotRadius, dotColor) => {
+    ctx.beginPath();
+    ctx.arc(x, y, dotRadius, 0, 2 * Math.PI, false);
+    ctx.fillStyle = dotColor;
+    ctx.fill();
+  };
+  let firstDottedLineDots = calcPointsCirc(center.x, center.y, 165, 1);
+  for (let k = 0; k < firstDottedLineDots.length; k++) {
+    let x = firstDottedLineDots[k].x;
+    let y = firstDottedLineDots[k].y;
+    DrawDottedLine(x, y, 175, 175, 1.75, 30, "#35FFFF");
+  }
+
+  //dummy circle to hide the line connecting to center
+  ctx.beginPath();
+  ctx.arc(center.x, center.y, 80, 2 * Math.PI, 0);
+  ctx.fillStyle = "";
+  ctx.fill();
+
+  //Speedometer triangle
+  var x = -75,
+    y = 0;
+  ctx.save();
+  ctx.beginPath();
+  ctx.translate(175, 175);
+  ctx.rotate(rotation);
+  ctx.moveTo(x, y);
+  ctx.lineTo(x + 10, y - 10);
+  ctx.lineTo(x + 10, y + 10);
+  ctx.closePath();
+  ctx.fillStyle = rotation >= 0.75 * Math.PI ? "#FF9421" : "#35FFFF";
+  ctx.fill();
+  ctx.restore();
+  if (rotation < totalRot) {
+    rotation += (1 * Math.PI) / 180;
+    if (rotation > totalRot) {
+      rotation -= (1 * Math.PI) / 180;
+    }
+  }
+
+  text.innerHTML = Math.round((rotation / Math.PI) * 100) + 0 + "%";
+  requestAnimationFrame(animate);
+}
+</script> {% endcomment %}
+<html>
+<head>
+    <!-- Include ECharts library -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts.min.js"></script>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h5>Energy Generation</h5>
+            
+        </div>
+        <div class="card-block text-center">
+            <div id="chart-echart-line-area1" style="width: 100%; height: 300px;"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(function() {
+                var dom = document.getElementById("chart-echart-line-area1");
+                var myChart = echarts.init(dom);
+                var app = {};
+                var option = null;
+                option = {
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['week 1', 'week 2', 'week 3']
+                    },
+                    toolbox: {
+                        show: false,
+                        feature: {
+                            mark: {
+                                show: true
+                            },
+                            dataView: {
+                                show: true,
+                                readOnly: false
+                            },
+                            magicType: {
+                                show: true,
+                                type: ['line', 'bar', 'stack', 'tiled']
+                            },
+                            restore: {
+                                show: true
+                            },
+                            saveAsImage: {
+                                show: true
+                            }
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [{
+                        type: 'category',
+                        splitLine: {
+                            show: false
+                        },
+                        boundaryGap: false,
+                        data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                    }],
+                    color: ["rgba(163, 137, 212, 0.5)", "rgba(4, 169, 246, 0.5)", "rgba(28, 233, 181, 0.5)"],
+                    yAxis: [{
+                        type: 'value',
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    series: [{
+                        name: 'week 1',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [1000,1440,1740,1230,2020,2040,2300]
+                    }, {
+                        name: 'week 2',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [1500, 1730, 1050, 1450, 1305, 2225, 1015, 1835]
+                    }, {
+                        name: 'week 3',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [900, 750, 725, 850, 1115, 1155, 1035, 1025]
+                    }]
+                };
+                myChart.setOption(option, true);
+            }, 700);
+        });
+    </script>
+</body>
+</html>
+
+<html>
+<head>
+    <!-- Include ECharts library -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts.min.js"></script>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h5>Energy Generation Prediction</h5>
+            
+        </div>
+        <div class="card-block text-center">
+            <div id="chart-echart-line-area3" style="width: 100%; height: 300px;"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(function() {
+                var dom = document.getElementById("chart-echart-line-area3");
+                var myChart = echarts.init(dom);
+                var app = {};
+                var option = null;
+                option = {
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['week 1', 'week 2', 'week 3']
+                    },
+                    toolbox: {
+                        show: false,
+                        feature: {
+                            mark: {
+                                show: true
+                            },
+                            dataView: {
+                                show: true,
+                                readOnly: false
+                            },
+                            magicType: {
+                                show: true,
+                                type: ['line', 'bar', 'stack', 'tiled']
+                            },
+                            restore: {
+                                show: true
+                            },
+                            saveAsImage: {
+                                show: true
+                            }
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [{
+                        type: 'category',
+                        splitLine: {
+                            show: false
+                        },
+                        boundaryGap: false,
+                        data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                    }],
+                    color: ["rgba(163, 137, 212, 0.5)", "rgba(4, 169, 246, 0.5)", "rgba(28, 233, 181, 0.5)"],
+                    yAxis: [{
+                        type: 'value',
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    series: [{
+                        name: 'week 1',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [900,1240,1540,1330,2120,1940,2100]
+                    }, {
+                        name: 'week 2',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [1400, 1530, 1150, 1250, 1105, 2325, 1115, 1900]
+                    }, {
+                        name: 'week 3',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [900, 750, 725, 850, 1115, 1155, 1035, 1025]
+                    }]
+                };
+                myChart.setOption(option, true);
+            }, 700);
+        });
+    </script>
+</body>
+</html>
+
+<html>
+<head>
+    <!-- Include ECharts library -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts.min.js"></script>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h5>Energy Consumption Prediction</h5>
+            
+        </div>
+        <div class="card-block text-center">
+            <div id="chart-echart-line-area4" style="width: 100%; height: 300px;"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(function() {
+                var dom = document.getElementById("chart-echart-line-area4");
+                var myChart = echarts.init(dom);
+                var app = {};
+                var option = null;
+                option = {
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['week 1', 'week 2', 'week 3']
+                    },
+                    toolbox: {
+                        show: false,
+                        feature: {
+                            mark: {
+                                show: true
+                            },
+                            dataView: {
+                                show: true,
+                                readOnly: false
+                            },
+                            magicType: {
+                                show: true,
+                                type: ['line', 'bar', 'stack', 'tiled']
+                            },
+                            restore: {
+                                show: true
+                            },
+                            saveAsImage: {
+                                show: true
+                            }
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [{
+                        type: 'category',
+                        splitLine: {
+                            show: false
+                        },
+                        boundaryGap: false,
+                        data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                    }],
+                    color: ["rgba(163, 137, 212, 0.5)", "rgba(4, 169, 246, 0.5)", "rgba(28, 233, 181, 0.5)"],
+                    yAxis: [{
+                        type: 'value',
+                        splitLine: {
+                            show: false
+                        }
+                    }],
+                    series: [{
+                        name: 'week 1',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [1000,1440,1740,1230,2020,2040,2300]
+                    }, {
+                        name: 'week 2',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [1400, 1630, 1150, 1250, 1315, 3225, 1115, 1735]
+                    }, {
+                        name: 'week 3',
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                areaStyle: {
+                                    type: 'macarons'
+                                }
+                            }
+                        },
+                        data: [1000, 950, 625, 1050, 1215, 1055, 1135, 1125]
+                    }]
+                };
+                myChart.setOption(option, true);
+            }, 700);
+        });
+    </script>
+</body>
+</html>
+<html>
+<head>
+    <!-- Include ECharts library -->
+    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h5>Energy Consumption Prediction</h5>
+            
+        </div>
+        <div>
+            <div id="container-speed"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+
+var gaugeOptions = {
+
+    chart: {
+        type: 'solidgauge'
+    },
+
+    title: null,
+
+    pane: {
+        center: ['50%', '85%'],
+        size: '100%',
+        startAngle: -90,
+        endAngle: 90,
+        background: {
+            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+            innerRadius: '60%',
+            outerRadius: '100%',
+            shape: 'arc'
+        }
+    },
+
+    tooltip: {
+        enabled: false
+    },
+
+    // the value axis
+    yAxis: {
+        stops: [
+            [0.1, '#55BF3B'], // green
+            [0.5, '#DDDF0D'], // yellow
+            [0.9, '#DF5353'] // red
+        ],
+        lineWidth: 0,
+        minorTickInterval: null,
+        tickPixelInterval: 400,
+        tickWidth: 0,
+        title: {
+            y: -70
+        },
+        labels: {
+            y: 16
+        }
+    },
+
+    plotOptions: {
+        solidgauge: {
+            dataLabels: {
+                y: 5,
+                borderWidth: 0,
+                useHTML: true
+            }
+        }
+    }
+};
+
+// The speed gauge
+$('#container-speed').highcharts(Highcharts.merge(gaugeOptions, {
+    yAxis: {
+        min: 0,
+        max: 10,
+        title: {
+            text: 'Satisfaction'
+        }
+    },
+
+    credits: {
+        enabled: false
+    },
+
+    series: [{
+        name: 'Satisfaction',
+        data: [0],
+        dataLabels: {
+            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                   '<span style="font-size:12px;color:silver"></span></div>'
+        },
+        tooltip: {
+            valueSuffix: ' '
+        }
+    }]
+
+}));
+
+
+// Bring life to the dials
+setInterval(function () {
+    // Speed
+    var chart = $('#container-speed').highcharts(),
+        point,
+        newVal,
+        inc;
+
+    if (chart) {
+        point = chart.series[0].points[0];
+
+        point.update(5);
+    }
+
+}, 2000);
+
+
+});
+    </script>
+</body>
+</html>
+
+
+  
+
+{% endblock content %}

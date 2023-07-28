@@ -1,0 +1,549 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <!-- [ breadcrumb ] start -->
+                <div class="page-header">
+                    <div class="page-block">
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ breadcrumb ] end -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- [ Main Content ] start -->
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="card">
+									<div id="wallet-info">
+										<br>
+										
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<button id="connect-wallet-button" class="btn-outline-success">Connect Wallet</button>
+										<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h4>Wallet Address :<span id="wallet-address"></span>  </h4>
+										
+									  </div>
+								</div>
+							</div>
+						</div>
+						
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Sell Energy</h5>
+                                    </div>
+                                    <div class="card-body">
+    <style>
+		.p {
+			color: #000;
+		}
+      .sell-offer {
+		width: calc(50% - 10px);
+		float: left; 
+        box-sizing: border-box; 
+        border: 2px solid #ffffff;
+        padding: 10px;
+        margin-bottom: 20px;
+		margin-right: 10px;
+		height: 170px;
+      }
+	  .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+    </style>
+  </head>
+  <body>
+   
+    <br>
+    <br>
+    <div class="col-md-8">
+        <form id="sell-form">
+            <label for="energy-amount">Energy Amount(in units):</label>
+            <input class="mb-3 form-control" type="number" id="energy-amount" required />
+      
+            <label for="price">Price Per Unit:</label>
+            <input class="mb-3 form-control" type="number" id="price" required />
+            
+      
+            <button class="btn-outline-primary" type="submit" id="form-submit-button" disabled>Create Sell Offer</button>
+          </form>
+    </div>
+
+    
+</div>
+</div>
+</div>
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Energy Offers</h5>
+            </div>
+            <div class="card-body">
+
+    <div id="sell-offers"></div>
+
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+    <script>
+      let signer;
+      let contract;
+
+      async function connectWallet() {
+        if (window.ethereum) {
+          try {
+            await window.ethereum.enable();
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            signer = provider.getSigner();
+            const address = await signer.getAddress();
+            document.getElementById('wallet-address').textContent = address;
+            document.getElementById('form-submit-button').disabled = false;
+
+            // Replace with your contract address and ABI
+           const contractAddress = '0x6dc2C5283DF630faa0DD3fB3e205aFb8f4d5a0fC';
+            const contractABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_offerId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_unitCount",
+				"type": "uint256"
+			}
+		],
+		"name": "buyEnergy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_energyAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_price",
+				"type": "uint256"
+			}
+		],
+		"name": "createSellingOffer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_tokenAddress",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "offerId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "producer",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "buyer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "energyAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"name": "EnergyTransferred",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "offerId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "producer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "energyAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "isAvailable",
+				"type": "bool"
+			}
+		],
+		"name": "OfferCreated",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_tokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "setTokenAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "energyBalances",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "seller",
+				"type": "address"
+			}
+		],
+		"name": "getSellerTransactionCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "seller",
+				"type": "address"
+			}
+		],
+		"name": "getSellerTransactions",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "energyAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct EnergyTradingContract.Transaction[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "getTokenBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "offerCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "sellerTransactions",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "buyer",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "energyAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "sellingOffers",
+		"outputs": [
+			{
+				"internalType": "address payable",
+				"name": "producer",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "energyAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "isAvailable",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "tokenAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+            contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+            loadSellOffers();
+          } catch (error) {
+            console.error('Failed to connect wallet:', error);
+          }
+        } else {
+          alert('Please install MetaMask to connect your wallet.');
+        }
+      }
+
+      async function createSellOffer(energyAmount, price) {
+        try {
+          const tx = await contract.createSellingOffer(energyAmount, price);
+          await tx.wait();
+          console.log('Selling offer created. Transaction hash:', tx.hash);
+          loadSellOffers();
+        } catch (error) {
+          console.error('Error creating selling offer:', error);
+        }
+      }
+
+      async function buyEnergy(offerId, unitCount) {
+        try {
+          const tx = await contract.buyEnergy(offerId, unitCount);
+          await tx.wait();
+          console.log('Energy bought successfully. Transaction hash:', tx.hash);
+          loadSellOffers();
+        } catch (error) {
+          console.error('Error buying energy:', error);
+        }
+      }
+
+      async function loadSellOffers() {
+  const sellOffersElement = document.getElementById('sell-offers');
+  sellOffersElement.innerHTML = '';
+
+  const offerCount = await contract.offerCount();
+  for (let i = 0; i < offerCount; i++) {
+    const offer = await contract.sellingOffers(i);
+    const sellOfferElement = document.createElement('div');
+    sellOfferElement.classList.add('sell-offer');
+
+    const energyAmountElement = document.createElement('p');
+    energyAmountElement.textContent = `Available Energy(Units) : ${offer.energyAmount}`;
+    sellOfferElement.appendChild(energyAmountElement);
+
+    const priceElement = document.createElement('p');
+    priceElement.textContent = `Price per Unit : ${offer.price}`;
+    sellOfferElement.appendChild(priceElement);
+
+    const sellerAddressElement = document.createElement('p');
+    sellerAddressElement.textContent = `Seller Address: ${offer.producer}`;
+    sellOfferElement.appendChild(sellerAddressElement);
+
+    if (offer.energyAmount == 0) {
+      const soldOutButton = document.createElement('button');
+      soldOutButton.textContent = 'Sold Out';
+      soldOutButton.disabled = true;
+      sellOfferElement.appendChild(soldOutButton);
+    } else {
+      const buyButton = document.createElement('button');
+	  buyButton.classList.add("btn-outline-success");
+      buyButton.textContent = 'Buy Energy';
+      buyButton.addEventListener('click', async () => {
+        const unitCount = prompt('Enter the unit count to buy:');
+        if (!isNaN(unitCount)) {
+          await buyEnergy(i, unitCount);
+        } else {
+          alert('Invalid unit count.');
+        }
+      });
+      sellOfferElement.appendChild(buyButton);
+    }
+
+    sellOffersElement.appendChild(sellOfferElement);
+  }
+}
+      document.getElementById('connect-wallet-button').addEventListener('click', connectWallet);
+      document.getElementById('sell-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const energyAmount = document.getElementById('energy-amount').value;
+        const price = document.getElementById('price').value;
+        createSellOffer(energyAmount, price);
+      });
+
+      loadSellOffers();
+    </script>
+  </body>
+  </div>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

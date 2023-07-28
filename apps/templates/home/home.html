@@ -1,0 +1,119 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- [ Main Content ] start -->
+    <section class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <div class="row">
+                             
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>MetaMask</h5>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="row">
+                                                    <form onsubmit="sendCurrency(event)">
+                                                        <label for="amount">Amount:</label>
+                                                        <input type="text" id="amount" name="amount" required><br><br>
+                                                        <label for="walletAddress">Wallet Address:</label>
+                                                        <input type="text" id="walletAddress" name="walletAddress" required><br><br>
+                                                        <button type="submit">Send Currency</button>
+                                                    </form>
+                                                    <script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js"></script>
+                                                    <script>
+                                                        // Connect to MetaMask
+                                                        async function connectToMetaMask() {
+                                                            if (window.ethereum) {
+                                                                try {
+                                                                    // Request access to the user's MetaMask account
+                                                                    await window.ethereum.enable();
+                                                                    // Use the injected Ethereum provider
+                                                                    const provider = new ethers.providers.Web3Provider(window.ethereum);
+                                                                    // Access the user's selected account
+                                                                    const signer = provider.getSigner();
+                                                                    const address = await signer.getAddress();
+                                                                    // Use the signer to interact with the Ethereum network
+                                                                    console.log('Connected to MetaMask:', address);
+                                                                    // Perform additional actions here
+                                                                } catch (error) {
+                                                                    console.error('Error connecting to MetaMask:', error);
+                                                                }
+                                                            } else {
+                                                                console.error('Please install MetaMask.');
+                                                            }
+                                                        }
+                                                
+                                                        // Send currency to the specified wallet address
+                                                        async function sendCurrency(event) {
+                                                            event.preventDefault();
+                                                
+                                                            const amount = document.getElementById('amount').value;
+                                                            const walletAddress = document.getElementById('walletAddress').value;
+                                                
+                                                            if (!amount || !walletAddress) {
+                                                                console.error('Please provide both amount and wallet address.');
+                                                                return;
+                                                            }
+                                                
+                                                            if (window.ethereum) {
+                                                                try {
+                                                                    // Request access to the user's MetaMask account
+                                                                    await window.ethereum.enable();
+                                                                    // Use the injected Ethereum provider
+                                                                    const provider = new ethers.providers.Web3Provider(window.ethereum);
+                                                                    // Access the user's selected account
+                                                                    const signer = provider.getSigner();
+                                                                    const address = await signer.getAddress();
+                                                                    // Use the signer to interact with the Ethereum network
+                                                                    console.log('Connected to MetaMask:', address);
+                                                                    // Perform the currency transfer
+                                                                    const transaction = {
+                                                                        to: walletAddress,
+                                                                        value: ethers.utils.parseEther(amount),
+                                                                    };
+                                                                    const tx = await signer.sendTransaction(transaction);
+                                                                    console.log('Transaction hash:', tx.hash);
+                                                                    // Handle transaction confirmation and other actions
+                                                                } catch (error) {
+                                                                    console.error('Error connecting to MetaMask or sending currency:', error);
+                                                                }
+                                                            } else {
+                                                                console.error('Please install MetaMask.');
+                                                            }
+                                                        }
+                                                
+                                                        // Call the connectToMetaMask function
+                                                        connectToMetaMask();
+                                                    </script>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- [ Main Content ] end -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,248 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page Blank {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}  {% endblock stylesheets %}
+{% block content %}
+<section class="pcoded-main-container">
+  <div class="pcoded-wrapper">
+    <div class="pcoded-content">
+      <div class="pcoded-inner-content">
+        <div class="main-body">
+          <div class="page-wrapper">
+            <div class="row">
+              <div class="card">
+                <div>
+                  <video id="camera-stream"></video>
+                  <center><button id="capture-btn" class="btn btn-primary">Click Picture</button></center>
+                </div> 
+              </div>
+              <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Team Members</h5>
+                        <br>
+                        <br>
+                    <form action="{% url 'team'  %}" method='POST' enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="text" class="form-control" placeholder="Name" name="attendee">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    </div>
+                    <div class="card-block table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Present</th>
+                                        <th>Absent</th>
+                                        <th>Details</th>
+                                        <th>Verification</th>
+                                    </tr>
+                                </thead>
+                                <!-- <tbody>
+                                    {% for o in all_objects %}
+                                    <tr>
+                                      
+                                      <td class="fitwidth">
+                          
+                                            <p  class="fw-bold mb-1">{{ o.memid }}</p>
+                                      </td>
+                                    
+                                      <td class="fitwidth">
+                                          <p style="text-align:center;" class="fw-normal mb-1">{{ o.member }}</p>
+                          
+                                      </td>
+                                      <td class="left">
+                                        <p style="text-align:center;" class="fw-normal mb-1">{{ o.location }}</p>
+                        
+                                    </td>
+                                    <td class="left">
+                                        <button type="submit" class="btn btn-primary">Details</button>                                    
+                        
+                                    </td>
+                                      
+                                    </tr>
+                                    {% empty %}
+                                    <p>Nothing detected</p>
+                                    {% endfor %}
+                          
+                                  </tbody> -->
+                                  <tbody>
+                                    <tr>
+                                      <td class="fitwidth">
+                                        <p>26/04/2023</p></td>
+                                       <td><p>48</p></td>
+                                       <td><p>2</p></td>
+                                       <td>
+                                        <a href = "{{case_name}}.pdf" download >  
+                                         <b> Download </b>  
+                                        </a>
+                                        </td>
+                                        <td><button type="submit" class="btn btn-primary">Upload</button> </td>
+                                        
+
+                                    </tr>
+                                    <tr>
+                                      <td class="fitwidth">
+                                        <p>27/04/2023</p></td>
+                                       <td><p>43</p></td>
+                                       <td><p>7</p></td>
+                                       <td>
+                                        <a href = "{{case_name}}.pdf" download >  
+                                         <b> Download </b>  
+                                        </a>
+                                        </td>
+                                        <td><button type="submit" class="btn btn-primary">Upload</button> </td>
+
+                                    </tr>
+                                    <tr>
+                                      <td class="fitwidth">
+                                        <p>28/04/2023</p></td>
+                                       <td><p>38</p></td>
+                                       <td><p>12</p></td>
+                                       <td>
+                                        <a href = "{{case_name}}.pdf" download >  
+                                         <b> Download </b>  
+                                        </a>
+                                        </td>
+                                        <td><button type="submit" class="btn btn-primary">Upload</button> </td>
+
+                                    </tr>
+                                    <tr>
+                                      <tr>
+                                        <td class="fitwidth">
+                                          <p>29/04/2023</p></td>
+                                         <td><p>50</p></td>
+                                         <td><p>0</p></td>
+                                         <td>
+                                          <a href = "{{case_name}}.pdf" download >  
+                                           <b> Download </b>  
+                                          </a>
+                                          </td>
+                                          <td><button type="submit" class="btn btn-primary">Upload</button> </td>
+  
+                                      </tr>
+                                      <tr>
+                                        <td class="fitwidth">
+                                          <p>30/04/2023</p></td>
+                                         <td><p>48</p></td>
+                                         <td><p>2</p></td>
+                                         <td>
+                                          <a href = "{{case_name}}.pdf" download >  
+                                           <b> Download </b>  
+                                          </a>
+                                          </td>
+                                          <td><button type="submit" class="btn btn-primary">Upload</button> </td>
+  
+                                      </tr>
+                                      <tr>
+                                        <td class="fitwidth">
+                                          <p>31/04/2023</p></td>
+                                         <td><p>40</p></td>
+                                         <td><p>10</p></td>
+                                         <td>
+                                          <a href = "{{case_name}}.pdf" download >  
+                                           <b> Download </b>  
+                                          </a>
+                                          </td>
+                                          <td><button type="submit" class="btn btn-primary">Upload</button> </td>
+  
+                                      </tr>
+                                      <tr>
+                                        <td class="fitwidth">
+                                          <p>01/05/2023</p></td>
+                                         <td><p>45</p></td>
+                                         <td><p>5</p></td>
+                                         <td>
+                                         <a href = "{{case_name}}.pdf" download >  
+                                          <b> Download </b>  
+                                         </a>
+                                         </td>
+                                          <td><button type="submit" class="btn btn-primary">Upload</button> </td>
+
+  
+                                      </tr>
+                                     
+
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header">
+                           <h5>Verification</h5>
+                      </div>
+                      <div class="card-block">
+                          <div class="row">
+                            <form action="{% url 'attendance'  %}" method='POST' enctype="multipart/form-data">
+                              {% csrf_token %}
+                              <input type="text" class="form-control" placeholder="Name" name="uploadfile_name">
+                              <br>
+                              <br>
+                              <input type="file" id="myFile" name="uploadfile">
+                              <button type="submit" class="btn btn-primary">Submit</button>
+
+                            </form>
+                            <br>
+                            &nbsp; &nbsp;<h3><p >Hash of the File:</p></h3>
+                            <br>
+                            <b><p ><br>{{ hash }}</p></b>
+                        
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+    const video = document.getElementById('camera-stream');
+    const captureBtn = document.getElementById('capture-btn');
+    
+    // getUserMedia API to access the laptop camera
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            video.srcObject = stream;
+            video.play();
+        })
+        .catch(function(error) {
+            console.log("Error accessing camera: ", error);
+        });
+// Capturing image after 10 seconds of button click
+captureBtn.addEventListener('click', function() {
+        setTimeout(function() {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/png');
+            // Submit the captured image to Django view using AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/capture-image/', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({ image: imageData }));
+        }, 10000); // 10 seconds time limit
+    });
+
+  </script>
+{% endblock javascripts %}

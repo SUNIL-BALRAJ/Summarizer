@@ -1,0 +1,535 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page Blank {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+  
+{% endblock stylesheets %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+             background: black;
+         }
+         
+         .clock {
+             position: absolute;
+             top: 46%;
+             left: 50%;
+             transform: translateX(-50%) translateY(-50%);
+             color: #00000;
+             font-size : 15px;
+             font-family: Orbitron;
+             letter-spacing: 7px;
+           }
+       
+              @import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
+       
+       *,
+       *::before,
+       *::after {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+       }
+       
+       body {
+           block-size: 80vh;
+           display: grid;
+           place-content: center;
+           gap: 1rem;
+           font-family: "Lato", sans-serif;
+           background-color: #efefef;
+       }
+       
+       .text-container {
+           display: flex;
+           justify-content: center;
+           block-size: min(10rem, 23vw);
+           min-inline-size: 22.5rem;
+       }
+       
+       .text-stroke {
+           font-size: 42px;
+           letter-spacing: 4px;
+           fill: none;
+           stroke: #000;
+           stroke-width: 2;
+           stroke-dasharray: 100%;
+           stroke-dashoffset: 100%;
+           animation: textStrokeAnim 4000ms linear both;
+           animation-iteration-count: 1;
+       }
+       @keyframes textStrokeAnim {
+           0% {
+               stroke-dasharray: 100%;
+               stroke-dashoffset: 100%;
+               fill: #0000;
+           }
+           95% {
+               stroke-dasharray: 0%;
+               stroke-dashoffset: 90%;
+               fill: #0000;
+           }
+           100% {
+               stroke-dasharray: 0%;
+               stroke-dashoffset: 0%;
+               fill: #9b9dad;
+               filter: drop-shadow(2px 2px 10px #0007);
+           }
+       }
+       .container{
+             width: 1500px;
+             position: relative;
+             display: flex;
+             justify-content: space-between;
+             margin: 15px auto;
+         }
+         .container .card{
+           position: relative;
+           cursor: pointer;
+           width: auto;
+           display: inline-block;
+           margin-right: 30px;
+         
+         }
+         .container .card .face{
+           width: 250px;
+           height: 200px;
+           transition: 0.5s;
+         }
+         
+         .container .card .face.face1{
+           position: relative;
+           background: #333;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           z-index: 1;
+           transform: translateY(100px);
+         }
+         .container .card:hover .face.face1{
+           background: #cdd4cf;
+           transform: translateY(0);
+         }
+         .container .card .face.face2{
+           position: relative;
+           background: #fff;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           padding: 10px;
+           box-sizing: border-box;
+           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+           transform: translateY(-100px);
+           background-color: black;
+         }
+         .container .card:hover .face.face2{
+           transform: translateY(0);
+         }
+         
+         .container .card .face.face2 .content p{
+           margin: 0;
+           padding: 0;
+         }
+         .container .card .face.face1 .content{
+           opacity: 0.2;
+           transition: 0.5s;
+         }
+         
+         .container .card:hover .face.face1 .content{
+           opacity: 1;
+         }
+         
+         .container .card .face.face1 .content img{
+           max-width: 200px;
+         }
+         
+         .container .card .face.face1 .content h3{
+           margin: 10px 0 0;
+           padding: 0;
+           color: #fff;
+           text-align: center;
+           font-size: 1.5em;
+         }
+         .container .card .face.face2 .content a{
+           margin: 15px 0 0;
+           display:  inline-block;
+           text-decoration: none;
+           font-weight: 900;
+           color: rgb(255, 255, 255);
+           padding: 5px;
+           border: 1px solid #333;
+         }
+         .container .card .face.face2 .content a:hover{
+           background: rgb(255, 255, 255);
+           color: #fff;
+         }
+         header {
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           padding: 20px 10% 4% 10%;
+           background-color: #111a49b5;
+           color: #f9faf8;
+       }
+       
+       
+       
+       /* -----navbar----- */
+       
+       
+       .logo {
+           display: flex;
+           justify-content: flex-start;
+           font-size: 24px;
+           color: #f9faf8;
+       }
+       
+       
+       .nav {
+           justify-content: center;
+       }
+       
+       .left-link {
+           justify-content: flex-end;
+           align-content: center;
+       }
+       
+       .nav-item {
+           list-style: none;
+       }
+       
+       .nav-link {
+           color: #E5E7EB;
+           font-size: 18px;
+       }
+       
+       
+       .navbar {
+           flex: autos;
+       }
+       
+       /* hero section */
+       
+       #jumbotron {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           padding-top: 2%;
+           padding-bottom: 2%;
+       }
+       
+       .hero {
+           font-size: 48px;
+           font-weight: bolder;
+           color: #f9faf8;
+       }
+       
+       .hero-text {
+           padding-right: 22px;
+       }
+       
+       #image {
+           display: flex;
+           flex-direction: column;
+           border: 0.5px;
+           border-style: solid;
+           border-color: #111a49b5;
+           border-radius: 7px;
+           height: 200px;
+           width: 750px;
+           justify-content: center;
+           text-align: center;
+           background-color: #757e8d;
+       }
+       
+       #image>div>h6 {
+           font-size: small;
+           font-weight: lighter;
+       }
+       
+       /* Sections */
+       
+       section.info {
+           padding: 2% 10% 5% 10%;
+       }
+       
+       section.action {
+           padding: 2%;
+           margin: 10%;
+       }
+       
+       section.quote {
+           padding: 7% 12% 7% 12%;
+       }
+       
+       
+       section,
+       footer {
+           display: flex;
+           flex-direction: row;
+           justify-content: space-around;
+           align-content: center;
+       }
+       
+       
+       /* info section */
+       .info {
+           display: flex;
+           flex-flow: column;
+       }
+       
+       .info-h2 {
+           display: flex;
+           padding: 2%;
+           flex-direction: row;
+           justify-content: center;
+           font-size: 36px;
+           font-weight: bolder;
+           color: #111a49b5;
+       
+       }
+       
+       .cards {
+           display: flex;
+           flex-direction: row;
+           justify-content: center;
+           padding-top: 3%;
+           gap: 55px;
+       }
+       
+       .frame {
+           border: 3px;
+           border-style: solid;
+           border-color: #3882f6;
+           border-radius: 15px;
+           height: 150px;
+           width: 150px;
+       }
+       
+       .card {
+           text-align: left;
+           justify-content: center;
+           gap: 10px;
+           width: 150px;
+       }
+       
+       /* quote section */
+       
+       .quote {
+           flex-direction: column;
+           background-color: #E5E7EB;
+           color: #111a49b5;
+           font-size: 36px;
+           /* padding: 12%; */
+       }
+       
+       .quote>blockquote {
+           font-weight: lighter;
+           font-style: italic;
+       }
+       
+       .quote>p {
+           display: flex;
+           justify-content: flex-end;
+       }
+       
+       
+       
+       /* action section */
+       .action {
+           background-color: #3882f6;
+           color: #e5e7eb;
+           border-radius: 5px;
+       }
+       
+       .btn-action {
+           align-self: center;
+           justify-self: flex-end;
+       }
+       
+       /* footer section */
+       
+       footer {
+           background-color: #111a49b5;
+           color: #e5e7eb;
+           padding: 2%;
+       }
+       
+       </style>
+  
+  
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
+  
+    <!-- custome Styles -->
+    <link rel="stylesheet" href="./css/style.css">
+    
+  
+    <header class="header">
+      <!-- Navbar -->
+    
+  
+  </head>
+
+<section class="pcoded-main-container">
+  <div class="pcoded-wrapper">
+    <div class="pcoded-content">
+      <div class="pcoded-inner-content">
+        <div class="main-body">
+          <div class="page-wrapper">
+                <svg class="text-stroke" viewBox="0 0 500 100" width="80%" height="100%">
+                     <text class="text" x="20" y="75"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; SummAR</text>
+                </svg>
+           <div class="row">
+            <nav class="navbar">
+                <div class="left-link">
+                    <ul class="navbar" id="nav-links">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Serices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Left links -->
+      
+            </nav>
+            <div id="jumbotron">
+                <div>
+                    <h1 class="mb-3 hero">Save Energy</h1>
+                    <p class="mb-3 hero-text">The day when we shall know exactly what electricity is will chronicle an event probably greater, 
+                      more important than any other recorded in the history of the human race. The time will come when the comfort, the very existence, perhaps, of man will depend upon that wonderful agent.</p>
+                </div>
+                <!-- Jumbotron -->
+      
+                    {% comment %} NEW TRY {% endcomment %}
+      
+      
+      
+                    <img src="https://cdn.pixabay.com/photo/2018/01/24/17/33/light-bulb-3104355_1280.jpg" width="300px" height="200px">
+                        
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="container">
+                <div class="card">
+                   <div class="face face1">
+                      <div class="content">
+                         <img src="/static/assets/img/news1.jpg">
+                      </div>
+                   </div>
+                   <div class="face face2">
+                      <div class="content">
+                         <p style="color:rgb(255, 255, 255);">Advise States To Implement Digital DIN System : Supreme Court To Centre & GST Council</p>
+                         <a href="https://www.livelaw.in/top-stories/supreme-court-gst-council-digital-din-system-indirect-tax-pradeep-goyal-vs-union-of-india-2022-livelaw-sc-654-205530">Read More</a>
+                      </div>
+                   </div>
+                </div>
+                <br>
+                <div class="card">
+                   <div class="face face1">
+                      <div class="content">
+                         <img src="/static/assets/img/news2.jpg">
+                      </div>
+                   </div>
+                   <div class="face face2">
+                      <div class="content">
+                         <p style="color:rgb(255, 255, 255);">Caste Committee Clean Chit To NCB Officer Sameer Wankhede, FIR Against Nawab Malik For Defamation Under SC/ST Act</p>
+                         <a href="https://www.livelaw.in/news-updates/sameer-wankhede-caste-committee-nawab-malik-fir-sc-st-act-206536">Read More</a>
+                      </div>
+                   </div>
+                </div>
+                <br>
+                  <div class="card">
+                   <div class="face face1">
+                      <div class="content">
+                         <img src="/static/assets/img/news3.jpeg">
+                      </div>
+                   </div>
+                   <div class="face face2">
+                      <div class="content">
+                         <p style="color:rgb(255, 255, 255);">Standard Of Proof For Accused To Rebut Presumption U/S 139 NI Act Is That Of 'Preponderance Of Probabilities': Jharkhand High Court</p>
+                         <a href="https://www.livelaw.in/news-updates/jharkhand-high-court-negotiable-instruments-act-section-139-preponderance-of-probabilities-206528">Read More</a>
+                      </div>
+                   </div>
+                  </div>
+                <br>
+                <div class="card">
+                  <div class="face face1">
+                     <div class="content">
+                        <img src="/static/assets/img/news4.jpeg">
+                     </div>
+                  </div>
+                  <br>
+                  <div class="face face2">
+                     <div class="content">
+                        <p style="color:rgb(255, 255, 255);">Unbelievable That Man Would Take Family Members To Victim's House With A Marriage Proposal & Rape Her": MP High Court Quashes Case</p>
+                        <a href="https://www.livelaw.in/news-updates/unbelievable-man-take-family-members-victim-house-marriage-proposal-rape-mp-high-court-quashes-case-206535">Read More</a>
+                     </div>
+                  </div>
+               </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+     $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+    function showTime(){
+      var date = new Date();
+      var h = date.getHours(); // 0 - 23
+      var m = date.getMinutes(); // 0 - 59
+      var s = date.getSeconds(); // 0 - 59
+      var session = "AM";
+      
+      if(h == 0){
+          h = 12;
+      }
+      
+      if(h > 12){
+          h = h - 12;
+          session = "PM";
+      }
+      
+      h = (h < 10) ? "0" + h : h;
+      m = (m < 10) ? "0" + m : m;
+      s = (s < 10) ? "0" + s : s;
+      
+      var time = h + ":" + m + ":" + s + " " + session;
+      document.getElementById("MyClockDisplay").innerText = time;
+      document.getElementById("MyClockDisplay").textContent = time;
+      
+      setTimeout(showTime, 1000);
+      
+  }
+  
+  showTime();
+  </script>
+{% endblock javascripts %}

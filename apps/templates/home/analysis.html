@@ -1,0 +1,53 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- [ Main Content ] start -->
+    <section class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <div class="row">
+                             
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>MetaMask</h5>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="row">
+                                                <form action="{% url 'analysis'  %}"  method='POST'  enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <input type="text" class="form-control" placeholder="Response" name="res">
+                                                        <br>
+                                                    <button class="btn-primary" type="submit">Get Analysis</button>
+                                                    </form>
+                                                    
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- [ Main Content ] end -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
