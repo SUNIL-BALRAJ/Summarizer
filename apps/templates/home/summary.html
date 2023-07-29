@@ -77,7 +77,7 @@
                           <div class="row">
                             <p>{{sum}}</p>
                             <br>
-                            <button id="downloadButton" class="btn btn-success">Download File</button>
+                           
 
                             <form action="/analysis/{{ id }}/" method='POST' enctype="multipart/form-data">
                               {% csrf_token %}
@@ -87,17 +87,6 @@
                       </div>
                   </div>
                 </div>
-                <div class="col-sm-12">
-                  <div class="card">
-                      <div class="card-header">
-                         <h5>Hash of this summary file</h5>  
-                      </div>
-                      <div class="card-block">
-                          <div class="row">
-                            <p>{{hash}}</p><br>
-                          </div>
-                      </div>
-                  </div>
                 </div>
             </div>
             </div>
@@ -112,32 +101,5 @@
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
-<script>
- document.getElementById('slider').addEventListener('input', function() {
-            let value = this.value;
-            let percent = ["short","medium","large"];
-            document.getElementById('sliderValue').textContent = percent[value-1];
-        });
 
-document.getElementById('downloadButton').addEventListener('click', function() {
-    // Replace 'path/to/your/file.txt' with the actual path to your file.
-    var filePath = 'media\new_transcripts\output_1.docx';
-
-    // Create an anchor element to initiate the download
-    var downloadLink = document.createElement('a');
-    downloadLink.href = filePath;
-    downloadLink.download = 'file.txt';
-
-    // Append the link to the document body (required for Firefox)
-    document.body.appendChild(downloadLink);
-
-    // Trigger the download
-    downloadLink.click();
-
-    // Remove the link from the document body after triggering the download
-    document.body.removeChild(downloadLink);
-});
-
-
-</script>
 {% endblock javascripts %}
