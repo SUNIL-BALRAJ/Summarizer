@@ -1,0 +1,143 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page Blank {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<style>
+  /* Style the slider container */
+  .slider-container {
+      width: 300px;
+      margin: 20px auto;
+  }
+
+  /* Style the slider */
+  input[type="range"] {
+      width: 100%;
+  }
+
+  /* Style the slider labels */
+  .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+  }
+</style>
+{% endblock stylesheets %}
+{% block content %}
+<section class="pcoded-main-container">
+  <div class="pcoded-wrapper">
+    <div class="pcoded-content">
+      <div class="pcoded-inner-content">
+        <div class="main-body">
+          <div class="page-wrapper">
+            <div class="row">
+              
+              
+             
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header">
+                           <h5>Upload Audio Here</h5>
+                      </div>
+                      <div class="card-block">
+                          <div class="row"> 
+                            <form action="{% url 'audio'  %}" method='POST' enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="text" class="form-control" placeholder="Name" name="p_name">
+                                <br>
+                                <input type="number" class="form-control" placeholder="Name" name="p_num">
+                                <br>
+                                <input type="file" class="form-control" name="audio_file" accept="audio/*">
+                                <br>
+                                <input type="range" min="1" max="3" value="1" id="slider" name="slider_value" list="tickmarks">
+                                <span id="sliderValue">Short</span>
+                                <datalist id="tickmarks">
+                                    <option value="1">Short</option>
+                                    <option value="2">Medium</option>
+                                    <option value="3">Large</option>
+                                </datalist>
+                              </div>  
+                              <br>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header">
+                         <h5>Summary of {{p_name}}</h5>
+                         
+                      </div>
+                      <div class="card-block">
+                          <div class="row">
+                            <p>{{sum}}</p>
+                            <br>
+                            <button id="downloadButton" class="btn btn-success">Download File</button>
+
+                            <form action="/analysis/{{ id }}/" method='POST' enctype="multipart/form-data">
+                              {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Perform AI Analysis</button>
+                          </form>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="card">
+                      <div class="card-header">
+                         <h5>Hash of this summary file</h5>  
+                      </div>
+                      <div class="card-block">
+                          <div class="row">
+                            <p>{{hash}}</p><br>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+ document.getElementById('slider').addEventListener('input', function() {
+            let value = this.value;
+            let percent = ["short","medium","large"];
+            document.getElementById('sliderValue').textContent = percent[value-1];
+        });
+
+document.getElementById('downloadButton').addEventListener('click', function() {
+    // Replace 'path/to/your/file.txt' with the actual path to your file.
+    var filePath = 'media\new_transcripts\output_1.docx';
+
+    // Create an anchor element to initiate the download
+    var downloadLink = document.createElement('a');
+    downloadLink.href = filePath;
+    downloadLink.download = 'file.txt';
+
+    // Append the link to the document body (required for Firefox)
+    document.body.appendChild(downloadLink);
+
+    // Trigger the download
+    downloadLink.click();
+
+    // Remove the link from the document body after triggering the download
+    document.body.removeChild(downloadLink);
+});
+
+
+</script>
+{% endblock javascripts %}
